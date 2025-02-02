@@ -61,6 +61,8 @@ const GetAllZygonTableInformation = asyncHandler(async (req,res) => {
     if (!zygonInfoInTable) {
         throw new ApiError(404, "Zygon Information not found")
     }
+
+    console.log(zygonInfoInTable)
     return res
     .status(200)
     .json(new ApiResponse(zygonInfoInTable, "Zygon Table Information retrieved successfully"))
