@@ -68,8 +68,26 @@ const GetAllZygonTableInformation = asyncHandler(async (req,res) => {
     .json(new ApiResponse(zygonInfoInTable, "Zygon Table Information retrieved successfully"))
 })
 
+const DeleteZygonTableRow = asyncHandler(async (req, res) => {
+    const { rowId } = req.params;
+
+    if (!rowId) {
+        throw new ApiError(400, "Row ID is required");
+    }
+
+    const deletedEntry = await ZygonInformation.findByIdAndDelete(rowId);
+    if (!deletedEntry) {
+        throw new ApiError(404, "Zygon Information not found");
+    }
+
+    return res
+        .status(200)
+        .json(new ApiResponse(deletedEntry, "Zygon Table row deleted successfully"));
+});
+
 export {
     ZygonTable,
     UpdateZygonTable,
-    GetAllZygonTableInformation
+    GetAllZygonTableInformation,
+    DeleteZygonTableRow
 }
