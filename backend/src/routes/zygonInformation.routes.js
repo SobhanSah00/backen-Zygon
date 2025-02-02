@@ -7,7 +7,7 @@ import {
 
 const router = Router();
 
-router.route("/ZygonTable").post(ZygonTable)
+router.route("/PostZygonTable").post(ZygonTable)
 router.route("/UpdateZygonTable/:rowId").patch(UpdateZygonTable)
 router.route("/ZygonTable").get(GetAllZygonTableInformation)
 
