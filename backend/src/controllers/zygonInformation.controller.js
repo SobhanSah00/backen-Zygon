@@ -68,6 +68,23 @@ const GetAllZygonTableInformation = asyncHandler(async (req, res) => {
         .json(new ApiResponse(zygonInfoInTable, "Zygon Table Information retrieved successfully"))
 })
 
+const GetClassifyZygonInformationByEventName = asyncHandler(async (req, res) => {
+    const { EventName } = req.params;
+
+    // Case-insensitive search
+    const zygonInfoInTable = await ZygonInformation.find({ 
+        EventName: { $regex: new RegExp(`^${EventName}$`, "i") } 
+    }).sort({ Position: 1,PonintSequre : -1 }); ;
+
+    if (zygonInfoInTable.length === 0) {
+        throw new ApiError(404, "Zygon Information not found");
+    }
+
+    return res.status(200).json(
+        new ApiResponse(zygonInfoInTable, "Zygon Table Information retrieved successfully")
+    );
+});
+
 const DeleteZygonTableRow = asyncHandler(async (req, res) => {
     const { rowId } = req.params;
 
@@ -105,5 +122,6 @@ export {
     UpdateZygonTable,
     GetAllZygonTableInformation,
     DeleteZygonTableRow,
-    CalCulateAllPoints
+    CalCulateAllPoints,
+    GetClassifyZygonInformationByEventName
 }
