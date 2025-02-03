@@ -17,6 +17,10 @@ const ZygonInformationSchema = new Schema(
         Position : {
             type : Number,
             required: true
+        },
+        PonintSequre : {
+            type : Number,
+            required: true
         }
     }
 )
