@@ -117,11 +117,19 @@ const CalCulateAllPoints = asyncHandler(async (req, res) => {
         .json(new ApiResponse({ year, allPoints }, "All points calculated successfully"))
 })
 
+const DeleteAllRecordAtOnce = asyncHandler(async (req,res) => {
+    await ZygonInformation.deleteMany();
+    return res
+    .status(200)
+    .json(new ApiResponse({}, "All Zygon Information deleted successfully"))
+})
+
 export {
     ZygonTable,
     UpdateZygonTable,
     GetAllZygonTableInformation,
     DeleteZygonTableRow,
     CalCulateAllPoints,
-    GetClassifyZygonInformationByEventName
+    GetClassifyZygonInformationByEventName,
+    DeleteAllRecordAtOnce
 }

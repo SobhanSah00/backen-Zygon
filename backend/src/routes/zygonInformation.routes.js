@@ -5,7 +5,8 @@ import {
     GetAllZygonTableInformation,
     DeleteZygonTableRow,
     CalCulateAllPoints,
-    GetClassifyZygonInformationByEventName
+    GetClassifyZygonInformationByEventName,
+    DeleteAllRecordAtOnce
 } from "../controllers/zygonInformation.controller.js"
 
 const router = Router();
@@ -16,5 +17,6 @@ router.route("/ZygonTable").get(GetAllZygonTableInformation)
 router.route("/DeleteZygonRow/:rowId").delete(DeleteZygonTableRow)
 router.route("/AllPoints/:year").get(CalCulateAllPoints)
 router.route("/ClassifyZygonInformation/:EventName").get(GetClassifyZygonInformationByEventName)
+router.route("/deleteAllRecords").delete(DeleteAllRecordAtOnce)
 
 export default router
